@@ -1,0 +1,1 @@
+{"meta": {"message": "200 OK"}, "data": [{"foo": "meow","bar": "unicorn"}], "pagination": {"prev": "/path/to/earth","next": "/path/to/mars"}}
