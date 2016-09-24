@@ -7,7 +7,7 @@ An easy to use PHP client for Instagram API.
 
 ## Install & Usage
 
-1. Add following to your project's `composer.json`
+#### Add following to your project's `composer.json`
 
 ```json
 {
@@ -17,15 +17,15 @@ An easy to use PHP client for Instagram API.
 }
 ```
 
-2. Install using [Composer](http://getcomposer.org)
+#### Install using [Composer](http://getcomposer.org)
 
 ```shell
 $ comsposer install
 ```
 
-3. Register a client at [Instagram Developers](http://instagram.com/developer/clients/register/) and get `client_id`, `client_secret` and `redirect_uri`.
+#### Register a client at [Instagram Developers](http://instagram.com/developer/clients/register/) and get `client_id`, `client_secret` and `redirect_uri`.
 
-4. Here is a basic use case:
+#### Basic setup example:
 
 ```php
 require('path/to/vendor/autoload.php');
@@ -36,8 +36,11 @@ $client = new Jabran\Client($client_id = 'string', $secret = 'string', $redirect
 $authUrl = $client->authenticate();
 
 if (! isset($_GET['code'])) {
+
 	printf('<a href="%s">Login with Instagram</a>', $authUrl);
+
 } else {
+
     try {
 
     	// Authorize an authenticated user
@@ -98,6 +101,8 @@ $client->get('/path/to/instagram/resource/endpoint', array(parameters));
 
 $client->get('/media/recent', array('count' => 20));
 ```
+
+> You can find all Instagram API endpoints at [Instagram Developers documentation](https://www.instagram.com/developer/endpoints/).
 
 #### Make a POST call
 
