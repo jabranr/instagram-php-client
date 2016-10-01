@@ -7,9 +7,10 @@ use Jabran\Exception\UnauthorizedUserException;
 class UnauthorizedUserExceptionTest {
 
     /**
+     * @test
      * @expectedException Jabran\Exception\UnauthorizedUserException
      */
-    public function testMatchExpectedException() {
+    public function matchExpectedException() {
         throw new UnauthorizedUserException();
     }
 }
