@@ -1,3 +1,5 @@
+> Do NOT use. Work in progress!
+
 # Instagram PHP Client [![Build Status](https://travis-ci.org/jabranr/instagram-php-client.svg)](https://travis-ci.org/jabranr/instagram-php-client) [![Analytics](https://ga-beacon.appspot.com/UA-50688851-1/instagram-php-client)](https://github.com/igrigorik/ga-beacon)
 
 An easy to use PHP client for Instagram API.
