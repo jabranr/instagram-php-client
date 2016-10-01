@@ -86,8 +86,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
         $this->_request->setUri('https://jabran.me');
         $this->_request->setMethod(Request::HTTP_GET);
         $response = $this->_request->send();
-
-        $this->assertInstanceOf('Jabran\Interfaces\ResponseInterface', $response);
     }
 
     /**
