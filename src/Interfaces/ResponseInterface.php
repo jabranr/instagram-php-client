@@ -10,6 +10,7 @@ interface ResponseInterface {
      * Get raw response
      *
      * @return string
+     * @codeCoverageIgnore
      */
     public function getRawResponse();
 
@@ -18,6 +19,7 @@ interface ResponseInterface {
      *
      * @param string $response
      * @return self
+     * @codeCoverageIgnore
      */
     public function setRawResponse($response);
 
@@ -26,6 +28,7 @@ interface ResponseInterface {
      *
      * @param Jabran\Interfaces\RequestInterface $request
      * @return self
+     * @codeCoverageIgnore
      */
     public function setRequest(RequestInterface $request);
 }

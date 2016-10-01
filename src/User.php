@@ -51,7 +51,19 @@ class User implements InstagramUserInterface, ResponseInterface {
     /**
      * {@inheritDoc}
      */
-    public function __construct(ResponseInterface $response) {
+    public function __construct(ResponseInterface $response = null) {
+
+        if (!is_object($response) || !$response instanceof ResponseInterface) {
+            throw new \InvalidArgumentException(
+                sprintf('Expected an instance of ResponseInterface but got %s', gettype($response)),
+            400);
+        }
+
+        if (!$response->getRequest() instanceof RequestInterface) {
+            throw new \UnexpectedValueException(
+                sprintf('Expected an instance of RequestInterface but got %s', gettype($response->getRequest())),
+            400);
+        }
 
         $res = $response->getResponse();
 

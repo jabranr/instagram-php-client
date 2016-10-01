@@ -93,17 +93,19 @@ class Request implements RequestInterface {
      * Validate available methods
      *
      * @param string $method
+     * @return \InvalidArgumentException
      * @return bool
      */
-    protected function isValidRequestMethod($method) {
-        switch ($method) {
+    public function isValidRequestMethod($method) {
+        switch (strtoupper($method)) {
             case static::HTTP_GET:
             case static::HTTP_POST:
                 return true;
                 break;
 
             default:
-                return false;
+                throw new \InvalidArgumentException(
+                    sprintf('Unsupported method "%s" requested.', $method), 405);
                 break;
         }
     }
@@ -169,7 +171,7 @@ class Request implements RequestInterface {
     }
 
     /**
-     * @codeCoverageIgnore
+     * @return array
      */
     public function getHeaders() {
         return $this->headers;
@@ -184,7 +186,7 @@ class Request implements RequestInterface {
     }
 
     /**
-     * @codeCoverageIgnore
+     * @return string
      */
     public function getHeader($header) {
         return isset($this->headers[$header]) ? $this->headers[$header] : '';
@@ -209,12 +211,6 @@ class Request implements RequestInterface {
      * @codeCoverageIgnore
      */
     public function setMethod($method) {
-
-        if (! $this->isValidRequestMethod($method)) {
-            throw new \InvalidArgumentException(
-                sprintf('Unsupported method "%s" requested.', $method), 400);
-        }
-
         $this->method = $method;
         return $this;
     }
