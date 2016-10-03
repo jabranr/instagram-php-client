@@ -79,7 +79,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * Test unexpected response type
+     *
      * @test
+     * @expectedException \RuntimeException
      * @expectedException \UnexpectedValueException
      */
     public function sendRequestToGetUnexpectedResponse() {
@@ -90,7 +92,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * Test expected response type i.e. JSON
+     *
      * @test
+     * @expectedException \RuntimeException
      */
     public function sendRequestToGetExpectedResponse() {
         $this->_request->setUri('https://api.github.com/users/jabranr');
