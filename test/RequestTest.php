@@ -74,7 +74,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
         ));
 
         $this->assertEquals('array', gettype($this->_request->getHeaders()));
-        $this->assertGreaterThanOrEqual(2, count($this->_request->getHeaders()));
+        $this->assertGreaterThanOrEqual(2, sizeof($this->_request->getHeaders()));
     }
 
     /**
