@@ -2,6 +2,7 @@
 
 namespace Jabran;
 
+use Jabran\Request;
 use Jabran\Interfaces\RequestInterface;
 use Jabran\Interfaces\ResponseInterface;
 
@@ -26,11 +27,7 @@ class Response implements ResponseInterface {
      * {@inheritDoc}
      */
     public function __construct($response = '') {
-        $response = (string) $response;
-        $response = trim($response);
-
         $this->setRawResponse($response);
-        $this->_decode();
     }
 
     /**
@@ -39,7 +36,7 @@ class Response implements ResponseInterface {
      * @throws \UnexpectedValueException
      * @return Jabran\Response
      */
-    private function _decode() {
+    public function decode() {
         if ($this->getRawResponse()) {
             $object = json_decode($this->getRawResponse(), false);
 
@@ -48,6 +45,7 @@ class Response implements ResponseInterface {
             }
 
             $this->setResponse($object);
+            $this->setRequest(new Request());
         }
 
         return $this;
@@ -61,10 +59,20 @@ class Response implements ResponseInterface {
     }
 
     /**
-     * @codeCoverageIgnore
+     * @param string $rawResponse
+     * @throws \UnexpectedValueException
+     * @return Jabran\Response
      */
     public function setRawResponse($rawResponse) {
+        if (! is_string($rawResponse)) {
+            throw new \UnexpectedValueException(
+                sprintf('Expected a string as raw response but got "%s" instead.', gettype($rawResponse))
+            );
+        }
+
+        $rawResponse = trim($rawResponse);
         $this->rawResponse = $rawResponse;
+        $this->decode();
         return $this;
     }
 
